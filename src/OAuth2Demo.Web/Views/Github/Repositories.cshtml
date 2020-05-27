@@ -1,0 +1,16 @@
+@model OAuth2Demo.Web.Models.ViewModels.Github.GithubRepositoriesViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<h3>Your public repositories</h3>
+
+<ul>
+    @foreach (var repo in Model.Repositories)
+    {
+        <li>
+            <a href="@repo.Url">@repo.Name</a>
+        </li>
+    }
+</ul>
