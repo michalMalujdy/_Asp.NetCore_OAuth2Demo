@@ -12,7 +12,6 @@ namespace OAuth2Demo.Web.Infrastructure
             return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile("appsettings." + EnvironmentProvider.Current + ".json", true, true)
                 .AddJsonFile("appsettings." + Environment.MachineName + ".json", true, true)
                 .AddEnvironmentVariables();
         }
