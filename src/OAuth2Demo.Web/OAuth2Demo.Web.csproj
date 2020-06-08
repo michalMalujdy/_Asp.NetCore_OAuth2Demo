@@ -10,10 +10,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Assets\googledb0f9e0d661ecc2f.html" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="Assets\logo.png" />
       <Content Include="Assets\logo.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
