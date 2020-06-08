@@ -9,4 +9,11 @@
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Assets\googledb0f9e0d661ecc2f.html" />
+      <Content Include="Assets\googledb0f9e0d661ecc2f.html">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
