@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace OAuth2Demo.Web.Models.ViewModels.Github
+namespace OAuth2Demo.Web.ViewModels.Github
 {
     public class GithubRepositoriesViewModel
     {

@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OAuth2Demo.Web.Models.ViewModels.Github;
-using OAuth2Demo.Web.Services;
+using OAuth2Demo.Web.Services.Github;
+using OAuth2Demo.Web.ViewModels.Github;
 
 namespace OAuth2Demo.Web.Controllers
 {

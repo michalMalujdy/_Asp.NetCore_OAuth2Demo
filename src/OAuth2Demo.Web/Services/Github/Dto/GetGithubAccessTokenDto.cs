@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace OAuth2Demo.Web.Models.Dto.Github
+namespace OAuth2Demo.Web.Services.Github.Dto
 {
-    public class GetAccessTokenResponseDto
+    public class GetGithubAccessTokenDto
     {
         [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }

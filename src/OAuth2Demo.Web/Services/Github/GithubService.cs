@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OAuth2Demo.Web.Models.Dto.Github;
+using OAuth2Demo.Web.Services.Github.Dto;
 using OAuth2Demo.Web.Settings;
 
-namespace OAuth2Demo.Web.Services
+namespace OAuth2Demo.Web.Services.Github
 {
     public class GithubService : IGithubService
     {
@@ -37,7 +37,7 @@ namespace OAuth2Demo.Web.Services
             var response = await _httpClient.GetAsync(getAccessTokenUrl);
 
             var responseContent = await response.Content.ReadAsStringAsync();
-            var accessTokenDto = JsonSerializer.Deserialize<GetAccessTokenResponseDto>(responseContent);
+            var accessTokenDto = JsonSerializer.Deserialize<GetGithubAccessTokenDto>(responseContent);
 
             return accessTokenDto.AccessToken;
         }

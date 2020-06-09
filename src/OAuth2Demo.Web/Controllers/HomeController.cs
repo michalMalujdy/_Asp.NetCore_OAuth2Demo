@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OAuth2Demo.Web.Models;
-using OAuth2Demo.Web.Models.ViewModels;
+using OAuth2Demo.Web.ViewModels;
 
 namespace OAuth2Demo.Web.Controllers
 {

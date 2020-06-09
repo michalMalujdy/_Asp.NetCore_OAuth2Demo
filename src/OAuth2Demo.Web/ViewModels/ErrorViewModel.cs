@@ -1,4 +1,4 @@
-namespace OAuth2Demo.Web.Models.ViewModels
+namespace OAuth2Demo.Web.ViewModels
 {
     public class ErrorViewModel
     {

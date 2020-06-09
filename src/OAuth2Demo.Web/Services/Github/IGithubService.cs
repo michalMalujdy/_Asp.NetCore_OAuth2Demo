@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OAuth2Demo.Web.Models.Dto.Github;
+using OAuth2Demo.Web.Services.Github.Dto;
 
-namespace OAuth2Demo.Web.Services
+namespace OAuth2Demo.Web.Services.Github
 {
     public interface IGithubService
     {
