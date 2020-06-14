@@ -68,7 +68,10 @@ namespace OAuth2Demo.Web.Controllers
 
             var viewModel = new GoogleProfileViewModel
             {
-                // TODO set info
+                GoogleId = userInfo.GoogleId,
+                Email = userInfo.Email,
+                IsEmailVerified = userInfo.IsEmailVerified,
+                PictureUrl = userInfo.PictureUrl
             };
 
             return View(viewModel);
