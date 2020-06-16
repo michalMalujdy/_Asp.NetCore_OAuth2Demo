@@ -1,6 +1,6 @@
-namespace OAuth2Demo.Web.Settings
+namespace OAuth2Demo.Web.Settings.Google
 {
-    public class GoogleSettings
+    public class GoogleServiceSettings
     {
         public string ClientId { get; set; }
 

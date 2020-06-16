@@ -1,6 +1,6 @@
-namespace OAuth2Demo.Web.Settings
+namespace OAuth2Demo.Web.Settings.Github
 {
-    public class GithubSettings
+    public class GithubServiceSettings
     {
         public string GetOAuth2CodeUrl { get; set; }
 

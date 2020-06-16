@@ -67,7 +67,7 @@ namespace OAuth2Demo.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { context.Response.Redirect("/github"); });
+                endpoints.MapGet("/", async context => { context.Response.Redirect("/home/index"); });
                 endpoints.MapControllers();
             });
         }

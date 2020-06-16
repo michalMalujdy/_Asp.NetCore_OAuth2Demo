@@ -1,8 +1,9 @@
-using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OAuth2Demo.Web.Infrastructure;
 using OAuth2Demo.Web.Services.Google;
+using OAuth2Demo.Web.Settings.Google;
 using OAuth2Demo.Web.ViewModels.Google;
 
 namespace OAuth2Demo.Web.Controllers
@@ -11,26 +12,12 @@ namespace OAuth2Demo.Web.Controllers
     public class GoogleController : Controller
     {
         private readonly IGoogleService _googleService;
+        private readonly GoogleSessionSettings _googleSessionSettings;
 
-        private const string StateSessionKey = "State";
-        private const string GoogleAccessTokenSessionKey = "GoogleAccessToken";
-        private const string GoogleIdTokenSessionKey = "GoogleIdToken";
-
-        public GoogleController(IGoogleService googleService)
+        public GoogleController(IGoogleService googleService, GoogleSessionSettings googleSessionSettings)
         {
             _googleService = googleService;
-        }
-
-        [HttpGet]
-        public IActionResult Index()
-        {
-            var state = Guid.NewGuid().ToString();
-
-            HttpContext.Session.SetString(StateSessionKey, state);
-
-            var url = _googleService.GetLoginUrl(state, GetRedirectUri());
-
-            return View(new GoogleIndexViewModel(url));
+            _googleSessionSettings = googleSessionSettings;
         }
 
         [HttpGet("auth-return")]
@@ -38,15 +25,16 @@ namespace OAuth2Demo.Web.Controllers
             [FromQuery] string code,
             [FromQuery] string state)
         {
-            var stateFromCookie = HttpContext.Session.GetString(StateSessionKey);
+            var stateFromCookie = HttpContext.Session.GetString(_googleSessionSettings.StateKey);
 
             if (stateFromCookie != state)
-                return BadRequest("There was a problem with authentication. Please try again.");
+                return RedirectToAction("Index", "Home");
 
-            var tokens = await _googleService.GetTokensFromApi(code, GetRedirectUri());
+            var redirectUri = ApiUri.GetGoogleRedirectUri(HttpContext);
+            var tokens = await _googleService.GetTokensFromApi(code, redirectUri);
 
-            HttpContext.Session.SetString(GoogleAccessTokenSessionKey, tokens.AccessToken);
-            HttpContext.Session.SetString(GoogleIdTokenSessionKey, tokens.IdToken);
+            HttpContext.Session.SetString(_googleSessionSettings.AccessTokenKey, tokens.AccessToken);
+            HttpContext.Session.SetString(_googleSessionSettings.IdTokenKey, tokens.IdToken);
 
             return RedirectToAction("Profile");
         }
@@ -54,15 +42,15 @@ namespace OAuth2Demo.Web.Controllers
         [HttpGet("profile")]
         public async Task<IActionResult> Profile()
         {
-            var accessToken = HttpContext.Session.GetString(GoogleAccessTokenSessionKey);
+            var accessToken = HttpContext.Session.GetString(_googleSessionSettings.AccessTokenKey);
 
             if (string.IsNullOrEmpty(accessToken))
-                return BadRequest("There was a problem with authentication. Please try again.");
+                return RedirectToAction("Index", "Home");
 
-            var idToken = HttpContext.Session.GetString(GoogleIdTokenSessionKey);
+            var idToken = HttpContext.Session.GetString(_googleSessionSettings.IdTokenKey);
 
             if (string.IsNullOrEmpty(idToken))
-                return BadRequest("There was a problem with authentication. Please try again.");
+                return RedirectToAction("Index", "Home");
 
             var userInfo = await _googleService.GetUserInfoFromApi(accessToken);
 
@@ -76,11 +64,5 @@ namespace OAuth2Demo.Web.Controllers
 
             return View(viewModel);
         }
-
-        // private string GetRedirectUri()
-        //     => $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/google/auth-return";
-
-        private string GetRedirectUri()
-            => "https://oauth-m-malujdy.azurewebsites.net/google/auth-return";
     }
 }

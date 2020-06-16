@@ -1,9 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model OAuth2Demo.Web.ViewModels.Home.IndexViewModel
+
+@{
+    ViewData["Title"] = "OAuth2 Demo";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<h1 class="display-4">OAuth2 Demo</h1>
 
-    <button><a href=""></a></button>
-</div>
+<h3>Login with Google</h3>
+<button><a href="@Model.GoogleLoginUrl">Login with Google</a></button>
+
+<h3>Connect to Github</h3>
+<button><a href="@Model.GithubOAuthUrl">Connect to Github</a></button>

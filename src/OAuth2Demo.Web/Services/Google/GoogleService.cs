@@ -4,17 +4,17 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using OAuth2Demo.Web.Services.Google.Dto;
-using OAuth2Demo.Web.Settings;
+using OAuth2Demo.Web.Settings.Google;
 
 namespace OAuth2Demo.Web.Services.Google
 {
     public class GoogleService : IGoogleService
     {
-        private readonly GoogleSettings _settings;
+        private readonly GoogleServiceSettings _settings;
         private static HttpClient _getTokensClient;
         private static HttpClient _getUserInfoClient;
 
-        public GoogleService(GoogleSettings settings)
+        public GoogleService(GoogleServiceSettings settings)
         {
             _settings = settings;
             _getTokensClient = new HttpClient();

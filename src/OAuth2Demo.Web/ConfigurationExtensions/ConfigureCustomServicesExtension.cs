@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using OAuth2Demo.Web.Services.Github;
 using OAuth2Demo.Web.Services.Google;
 using OAuth2Demo.Web.Settings;
+using OAuth2Demo.Web.Settings.Github;
+using OAuth2Demo.Web.Settings.Google;
 
 namespace OAuth2Demo.Web.ConfigurationExtensions
 {
@@ -11,10 +13,12 @@ namespace OAuth2Demo.Web.ConfigurationExtensions
     {
         public static void AddConfiguredCustomServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.BindSettingsSingleton<GithubSettings>(configuration, "Github");
+            services.BindSettingsSingleton<GithubSessionSettings>(configuration, "GithubSession");
+            services.BindSettingsSingleton<GithubServiceSettings>(configuration, "GithubService");
             services.AddTransient<IGithubService, GithubService>();
 
-            services.BindSettingsSingleton<GoogleSettings>(configuration, "Google");
+            services.BindSettingsSingleton<GoogleSessionSettings>(configuration, "GoogleSession");
+            services.BindSettingsSingleton<GoogleServiceSettings>(configuration, "GoogleService");
             services.AddTransient<IGoogleService, GoogleService>();
         }
 
