@@ -4,10 +4,8 @@
     ViewData["Title"] = "OAuth2 Demo";
 }
 
-<h1 class="display-4">OAuth2 Demo</h1>
-
 <h3>Login with Google</h3>
-<button><a href="@Model.GoogleLoginUrl">Login with Google</a></button>
+<a href="@Model.GoogleLoginUrl"><button type="button" class="btn btn-secondary">Login with Google</button></a>
 
 <h3>Connect to Github</h3>
-<button><a href="@Model.GithubOAuthUrl">Connect to Github</a></button>
+<a href="@Model.GithubOAuthUrl"><button type="button" class="btn btn-secondary">Connect to Github</button></a>
