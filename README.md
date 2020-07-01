@@ -8,6 +8,9 @@ There were two main goals:
 - authorize a user in Github and display user's Github public repositories to get insight into delegated authorization Authorization Code Flow
 - authenticate a user with Google and display user's data to get insight into OpenID
 
+## Live demo
+[Link](https://oauth-m-malujdy.azurewebsites.net)
+
 ## Achieved Goals
 ### Github
 - Get hands on experience with OAuth2 Authorization Code Flow
