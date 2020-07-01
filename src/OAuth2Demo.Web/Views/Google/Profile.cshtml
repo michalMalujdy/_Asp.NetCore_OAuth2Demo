@@ -1,0 +1,21 @@
+@model OAuth2Demo.Web.ViewModels.Google.GoogleProfileViewModel
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "_Layout";
+
+    if (string.IsNullOrEmpty(Model.PictureUrl))
+    {
+        Model.PictureUrl = "https://finanzmesse.ch/userdata/uploads/referenten/avatar.jpg";
+    }
+}
+
+<h2>Profile</h2>
+
+<div>
+    <img src="@Model.PictureUrl" alt="avatar" width="100px"/><br/><br/>
+
+    Email: @Model.Email<br/>
+    Email verified: @(Model.IsEmailVerified ? "Yes" : "No")<br/>
+    Google ID: @Model.GoogleId
+</div>

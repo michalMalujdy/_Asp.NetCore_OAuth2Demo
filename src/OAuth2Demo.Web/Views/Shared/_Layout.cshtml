@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="7ZJqQJisDUzLYn-DTPih-ZpPzf9oK8d7t4B3cOq9tug" />
-    <title>@ViewData["Title"] - OAuth2Demo.Web</title>
+    <title>OAuth2 Demo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -12,7 +12,12 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OAuth2Demo.Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div style="display: flex; align-items: center;">
+                        <img src="~/favicon.ico" alt="icon" width="30" height="30" style="margin-right: 5px"/>
+                        <div>OAuth2 Demo</div>
+                    </div>
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,7 +39,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - OAuth2Demo.Web - Michał Malujdy
+            &copy; 2020 - OAuth2Demo.Web - Michal Malujdy
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

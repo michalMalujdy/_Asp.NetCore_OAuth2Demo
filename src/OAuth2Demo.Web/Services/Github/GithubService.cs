@@ -3,41 +3,42 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OAuth2Demo.Web.Models.Dto.Github;
+using OAuth2Demo.Web.Services.Github.Dto;
 using OAuth2Demo.Web.Settings;
+using OAuth2Demo.Web.Settings.Github;
 
-namespace OAuth2Demo.Web.Services
+namespace OAuth2Demo.Web.Services.Github
 {
     public class GithubService : IGithubService
     {
-        private readonly GithubSettings _settings;
+        private readonly GithubServiceSettings _serviceSettings;
         private static HttpClient _httpClient;
 
-        public GithubService(GithubSettings settings)
+        public GithubService(GithubServiceSettings serviceSettings)
         {
-            _settings = settings;
+            _serviceSettings = serviceSettings;
             _httpClient = new HttpClient();
         }
 
         public string GetOAuthCodeUrl(string state)
-            => _settings.GetOAuth2CodeUrl +
+            => _serviceSettings.GetOAuth2CodeUrl +
                "?response_type=code" +
                "&scope=user public_repo" +
-               $"&client_id={_settings.ClientId}" +
+               $"&client_id={_serviceSettings.ClientId}" +
                $"&state={state}";
 
         public async Task<string> GetAccessToken(string code)
         {
-            var getAccessTokenUrl = _settings.GetTokenUrl +
-                                    $"?client_id={_settings.ClientId}" +
-                                    $"&client_secret={_settings.ClientSecret}" +
+            var getAccessTokenUrl = _serviceSettings.GetTokenUrl +
+                                    $"?client_id={_serviceSettings.ClientId}" +
+                                    $"&client_secret={_serviceSettings.ClientSecret}" +
                                     $"&code={code}";
 
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             var response = await _httpClient.GetAsync(getAccessTokenUrl);
 
             var responseContent = await response.Content.ReadAsStringAsync();
-            var accessTokenDto = JsonSerializer.Deserialize<GetAccessTokenResponseDto>(responseContent);
+            var accessTokenDto = JsonSerializer.Deserialize<GetGithubAccessTokenDto>(responseContent);
 
             return accessTokenDto.AccessToken;
         }

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace OAuth2Demo.Web.Models.Dto.Github
+namespace OAuth2Demo.Web.Services.Github.Dto
 {
     public class GithubRepositoryDto
     {

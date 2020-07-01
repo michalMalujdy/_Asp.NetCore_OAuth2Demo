@@ -1,16 +1,23 @@
-@model OAuth2Demo.Web.Models.ViewModels.Github.GithubRepositoriesViewModel
+@model OAuth2Demo.Web.ViewModels.Github.GithubRepositoriesViewModel
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
-<h3>Your public repositories</h3>
+<h3>Your public repositories (@Model.Repositories.Count)</h3>
 
-<ul>
-    @foreach (var repo in Model.Repositories)
-    {
-        <li>
-            <a href="@repo.Url">@repo.Name</a>
-        </li>
-    }
-</ul>
+@if (@Model.Repositories.Count == 0)
+{
+    <p>You have no public repositories</p>
+}
+else
+{
+    <ul>
+        @foreach (var repo in Model.Repositories)
+        {
+            <li>
+                <a href="@repo.Url">@repo.Name</a>
+            </li>
+        }
+    </ul>
+}

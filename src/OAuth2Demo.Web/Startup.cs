@@ -37,6 +37,8 @@ namespace OAuth2Demo.Web
             services.AddConfiguredSession();
 
             services.AddControllersWithViews();
+            
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +69,7 @@ namespace OAuth2Demo.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { context.Response.Redirect("/github"); });
+                endpoints.MapGet("/", async context => { context.Response.Redirect("/home/index"); });
                 endpoints.MapControllers();
             });
         }
